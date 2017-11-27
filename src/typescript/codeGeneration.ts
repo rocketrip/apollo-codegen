@@ -391,7 +391,7 @@ export function propertyDeclarations(generator: CodeGenerator, properties: Prope
         || property.fragmentSpreads && property.fragmentSpreads.length > 0
       ) {
         propertyDeclaration(generator, property, () => {
-          const fields = property.fields.map(field => {
+          const fields = property.fields!.map(field => {
             if (field.fieldName === '__typename') {
               const objectTypeName = getObjectTypeName(property.fieldType || property.type);
               return {
@@ -403,7 +403,7 @@ export function propertyDeclarations(generator: CodeGenerator, properties: Prope
               return field;
             }
           });
-          const properties = propertiesFromFields(generator.context, fields!);
+          const properties = propertiesFromFields(generator.context, fields);
           propertyDeclarations(generator, properties, isInput);
         });
       } else {
