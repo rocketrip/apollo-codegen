@@ -393,6 +393,7 @@ export function propertyDeclarations(generator: CodeGenerator, properties: Prope
         propertyDeclaration(generator, property, () => {
           const fields = property.fields!.map(field => {
             if (field.fieldName === '__typename') {
+              // @ts-ignore
               const objectTypeName = getObjectTypeName(property.fieldType || property.type);
               return {
                 ...field,
